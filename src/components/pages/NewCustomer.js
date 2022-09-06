@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { NewCustomerForm } from '../forms/NewCustomerForm';
 import { styles } from '../../helpers/styles';
+import { phoneFormatter } from '../../helpers/phoneFormatter';
 
 const InputCheckModal = ({ inputs, hideModal, onAccept }) => {
     return (
@@ -59,6 +60,10 @@ export const NewCustomer = ({ setPage, setCustomerData }) => {
 
     const formSubmit = (e) => {
         e.preventDefault();
+        const inputsCopy = inputs;
+        const formattedPhone = phoneFormatter(inputs.phone);
+        inputsCopy.phone = formattedPhone;
+        console.log(inputsCopy);
         setShowInputsCheck(true);
     };
 
