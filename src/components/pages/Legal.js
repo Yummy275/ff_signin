@@ -3,13 +3,12 @@ import { legalWords } from '../../helpers/legalWords';
 import SignatureCanvas from 'react-signature-canvas';
 import { styles } from '../../helpers/styles';
 
-export const Legal = ({ addSignatureToData }) => {
+export const Legal = ({ addSignatureToData, setPage }) => {
     const [showButtons, setShowButtons] = useState(false);
     const legalSections = [];
     let sigCanvas = useRef();
 
     for (const section in legalWords) {
-        console.log(section);
         legalSections.push(<p key={section}>{legalWords[section]}</p>);
     }
 
@@ -23,6 +22,7 @@ export const Legal = ({ addSignatureToData }) => {
     const handleNextClick = () => {
         const sigData = sigCanvas.toDataURL();
         addSignatureToData(sigData);
+        setPage('create');
     };
 
     return (

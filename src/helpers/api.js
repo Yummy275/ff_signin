@@ -25,8 +25,6 @@ export const queryCreateCustomer = async (customerData) => {
         credentials: 'include',
         body: JSON.stringify(customerData),
     });
-    if (createReq.error) {
-        return null;
-    }
-    return;
+    const reqJson = await createReq.json();
+    return reqJson;
 };
