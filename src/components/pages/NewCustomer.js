@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { NewCustomerForm } from '../forms/NewCustomerForm';
 import { styles } from '../../helpers/styles';
 import { phoneFormatter } from '../../helpers/phoneFormatter';
+import { capitalizeFirstLetter } from '../../helpers/capitlizeFirstLetter';
 
 const InputCheckModal = ({ inputs, hideModal, onAccept }) => {
     return (
@@ -60,10 +61,14 @@ export const NewCustomer = ({ setPage, setCustomerData }) => {
 
     const formSubmit = (e) => {
         e.preventDefault();
-        const inputsCopy = inputs;
+        const inputsCopy = { ...inputs };
         const formattedPhone = phoneFormatter(inputs.phone);
+        const formattedFirstName = capitalizeFirstLetter(inputsCopy.firstName);
+        const formattedLastName = capitalizeFirstLetter(inputsCopy.lastName);
         inputsCopy.phone = formattedPhone;
-        console.log(inputsCopy);
+        inputsCopy.firstName = formattedFirstName;
+        inputsCopy.lastName = formattedLastName;
+        setInputs({ ...inputsCopy });
         setShowInputsCheck(true);
     };
 
