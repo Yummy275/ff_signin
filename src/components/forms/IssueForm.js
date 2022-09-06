@@ -17,6 +17,7 @@ export const IssueForm = ({
                 id="issue"
                 placeholder="Describe your issue"
                 onChange={(e) => updateTextArea(e)}
+                required
             />
             <div className="form-check mt-3">
                 <label htmlFor="accessories" className="form-check-label">

@@ -10,6 +10,13 @@ function App() {
     //data about user and the issue that brings them in
     const [customerData, setCustomerData] = useState({});
 
+    const addSignatureToData = (sigData) => {
+        setCustomerData((customerData) => ({
+            ...customerData,
+            signature: sigData,
+        }));
+    };
+
     const mainPages = () => {
         if (page === 'greet') return <Greeting setPage={setPage} />;
         if (page === 'new')
@@ -27,7 +34,8 @@ function App() {
                     setPage={setPage}
                 />
             );
-        if (page === 'legal') return <Legal customerData={customerData} />;
+        if (page === 'legal')
+            return <Legal addSignatureToData={addSignatureToData} />;
     };
 
     return (
