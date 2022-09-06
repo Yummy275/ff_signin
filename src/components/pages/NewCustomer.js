@@ -5,10 +5,16 @@ import { styles } from '../../helpers/styles';
 const InputCheckModal = ({ inputs, hideModal, onAccept }) => {
     return (
         <div
-            className="100vh position-absolute bg-white"
-            style={{ zIndex: '10', width: '800px' }}
+            className="position-absolute bg-white border p-5 rounded text-center"
+            style={{
+                zIndex: '10',
+                width: '800px',
+                margin: '0 auto 0 auto',
+                left: '0',
+                right: '0',
+            }}
         >
-            <h2 className="text-center">Is this correct?</h2>
+            <h2 className="text-center mb-5">Is this correct?</h2>
             <div className="mb-3">
                 <h4>Full Name</h4>
                 <h3 className="fst-italic text-danger">
@@ -27,11 +33,11 @@ const InputCheckModal = ({ inputs, hideModal, onAccept }) => {
                 <h4>Address</h4>
                 <h3 className="fst-italic text-danger">{`${inputs.street} ${inputs.city} ${inputs.state}, ${inputs.zip}`}</h3>
             </div>
-            <div>
+            <div className="d-flex justify-content-center gap-5 mt-3">
                 <button className={styles.button} onClick={onAccept}>
                     Accept
                 </button>
-                <button className={styles.button} onClick={() => hideModal}>
+                <button className={styles.button} onClick={hideModal}>
                     Edit
                 </button>
             </div>
@@ -57,6 +63,7 @@ export const NewCustomer = ({ setPage, setCustomerData }) => {
     };
 
     const acceptCheck = () => {
+        setCustomerData(inputs);
         setPage('issue');
     };
 

@@ -7,7 +7,7 @@ import { Issue } from './components/pages/Issue';
 function App() {
     const [page, setPage] = useState('greet');
     //data about user and the issue that brings them in
-    const [customerData, setCustomerData] = useState(null);
+    const [customerData, setCustomerData] = useState({});
 
     const mainPages = () => {
         if (page === 'greet') return <Greeting setPage={setPage} />;
@@ -15,10 +15,16 @@ function App() {
             return (
                 <NewCustomer
                     setPage={setPage}
-                    setCustomerInfo={setCustomerData}
+                    setCustomerData={setCustomerData}
                 />
             );
-        if (page === 'issue') return <Issue />;
+        if (page === 'issue')
+            return (
+                <Issue
+                    customerName={customerData.firstName}
+                    setCustomerData={setCustomerData}
+                />
+            );
     };
 
     return (
