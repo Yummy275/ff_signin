@@ -3,6 +3,7 @@ import './App.css';
 import { Greeting } from './components/pages/Greeting';
 import { NewCustomer } from './components/pages/NewCustomer';
 import { Issue } from './components/pages/Issue';
+import { Legal } from './components/pages/Legal';
 
 function App() {
     const [page, setPage] = useState('greet');
@@ -21,10 +22,12 @@ function App() {
         if (page === 'issue')
             return (
                 <Issue
-                    customerName={customerData.firstName}
                     setCustomerData={setCustomerData}
+                    customerData={customerData}
+                    setPage={setPage}
                 />
             );
+        if (page === 'legal') return <Legal customerData={customerData} />;
     };
 
     return (
