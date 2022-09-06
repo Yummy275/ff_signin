@@ -4,9 +4,10 @@ import { Greeting } from './components/pages/Greeting';
 import { NewCustomer } from './components/pages/NewCustomer';
 import { Issue } from './components/pages/Issue';
 import { Legal } from './components/pages/Legal';
+import { Login } from './components/pages/Login';
 
 function App() {
-    const [page, setPage] = useState('greet');
+    const [page, setPage] = useState('');
     //data about user and the issue that brings them in
     const [customerData, setCustomerData] = useState({});
 
@@ -36,6 +37,7 @@ function App() {
             );
         if (page === 'legal')
             return <Legal addSignatureToData={addSignatureToData} />;
+        return <Login setGreetPage={() => setPage('greet')} />;
     };
 
     return (
