@@ -19,6 +19,11 @@ function App() {
         }));
     };
 
+    const reset = () => {
+        setPage('greet');
+        setCustomerData({});
+    };
+
     const mainPages = () => {
         if (page === 'greet') return <Greeting setPage={setPage} />;
         if (page === 'new')
@@ -44,7 +49,7 @@ function App() {
                 />
             );
         if (page === 'create')
-            return <SendData customerData={customerData} setPage={setPage} />;
+            return <SendData customerData={customerData} done={reset} />;
         return <Login setGreetPage={() => setPage('greet')} />;
     };
 

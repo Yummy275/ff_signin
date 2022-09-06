@@ -4,7 +4,7 @@ import { queryCreateCustomer } from '../../helpers/api';
 import { Loading } from '../Loading';
 import { styles } from '../../helpers/styles';
 
-export const SendData = ({ customerData, setPage, handleComplete }) => {
+export const SendData = ({ customerData, done }) => {
     const [loading, setLoading] = useState(true);
 
     useEffect(() => {
@@ -17,7 +17,7 @@ export const SendData = ({ customerData, setPage, handleComplete }) => {
             setLoading(false);
         };
         createCustomer();
-    }, [customerData, setPage]);
+    }, [customerData]);
 
     return (
         <>
@@ -28,7 +28,9 @@ export const SendData = ({ customerData, setPage, handleComplete }) => {
                 <Loading />
             ) : (
                 <div className="text-center">
-                    <button className={styles.button + ' mt-3'}>Done</button>
+                    <button onClick={done} className={styles.button + ' mt-3'}>
+                        Done
+                    </button>
                 </div>
             )}
         </>
