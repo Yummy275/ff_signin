@@ -5,7 +5,7 @@ import { NewCustomer } from './components/pages/NewCustomer';
 import { Issue } from './components/pages/Issue';
 import { Legal } from './components/pages/Legal';
 import { Login } from './components/pages/Login';
-import ApiCreateCustomer from './components/pages/ApiCreateCustomer';
+import { SendData } from './components/pages/SendData';
 
 function App() {
     const [page, setPage] = useState('');
@@ -44,12 +44,7 @@ function App() {
                 />
             );
         if (page === 'create')
-            return (
-                <ApiCreateCustomer
-                    customerData={customerData}
-                    setPage={setPage}
-                />
-            );
+            return <SendData customerData={customerData} setPage={setPage} />;
         return <Login setGreetPage={() => setPage('greet')} />;
     };
 

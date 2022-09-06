@@ -1,8 +1,10 @@
 import React, { useEffect, useState } from 'react';
+import { createAndPrintIssuePdf } from '../../helpers/createIssuePdf';
 import { queryCreateCustomer } from '../../helpers/api';
 import { Loading } from '../Loading';
+import { styles } from '../../helpers/styles';
 
-const ApiCreateCustomer = ({ customerData, setPage, handleComplete }) => {
+export const SendData = ({ customerData, setPage, handleComplete }) => {
     const [loading, setLoading] = useState(true);
 
     useEffect(() => {
@@ -11,10 +13,8 @@ const ApiCreateCustomer = ({ customerData, setPage, handleComplete }) => {
             if (reqResult.error) {
                 return console.log(reqResult.error);
             }
+            createAndPrintIssuePdf(customerData);
             setLoading(false);
-            setTimeout(() => {
-                setPage('greet');
-            }, 5000);
         };
         createCustomer();
     }, [customerData, setPage]);
@@ -22,11 +22,15 @@ const ApiCreateCustomer = ({ customerData, setPage, handleComplete }) => {
     return (
         <>
             <h1>
-                {loading ? 'Please Wait' : 'Thank you for choosing FastFix'}
+                {loading ? 'Please Wait' : 'Thank you for choosing FastFix!'}
             </h1>
-            {loading ? <Loading /> : <div></div>}
+            {loading ? (
+                <Loading />
+            ) : (
+                <div className="text-center">
+                    <button className={styles.button + ' mt-3'}>Done</button>
+                </div>
+            )}
         </>
     );
 };
-
-export default ApiCreateCustomer;
