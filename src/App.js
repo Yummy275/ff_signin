@@ -32,8 +32,16 @@ function App() {
 
     return (
         <div className="App">
-            <div className="vh-100 d-flex justify-content-center align-items-center bg-transparent">
-                <div className="p-5 bg-white border rounded">{mainPages()}</div>
+            <div
+                className="d-flex justify-content-center align-items-center bg-transparent"
+                style={{ minHeight: '100vh' }}
+            >
+                <div
+                    className="p-5 bg-white border rounded"
+                    style={{ maxWidth: '1000px' }}
+                >
+                    {mainPages()}
+                </div>
             </div>
         </div>
     );

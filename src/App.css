@@ -9,5 +9,6 @@ html {
 .App {
     background-image: url('./images/pageBG.jpg');
     background-size: cover;
-    background-position: fixed;
+    background-repeat: no-repat;
+    background-attachment: fixed;
 }
