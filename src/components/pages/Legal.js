@@ -1,9 +1,10 @@
-import React, { useRef } from 'react';
+import React, { useRef, useState } from 'react';
 import { legalWords } from '../../helpers/legalWords';
 import SignatureCanvas from 'react-signature-canvas';
 import { styles } from '../../helpers/styles';
 
 export const Legal = ({ addSignatureToData }) => {
+    const [showButtons, setShowButtons] = useState(false);
     const legalSections = [];
     let sigCanvas = useRef();
 
@@ -14,6 +15,7 @@ export const Legal = ({ addSignatureToData }) => {
 
     const clearCanvas = () => {
         sigCanvas.clear();
+        setShowButtons(false);
     };
 
     const today = new Date();
@@ -31,6 +33,7 @@ export const Legal = ({ addSignatureToData }) => {
             <div className="d-flex align-items-center gap-2">
                 <SignatureCanvas
                     backgroundColor="rgba(242,242,242)"
+                    onEnd={() => setShowButtons(true)}
                     canvasProps={{
                         width: 600,
                         height: 80,
@@ -41,14 +44,16 @@ export const Legal = ({ addSignatureToData }) => {
                 />
                 <p className="fs-4">{today.toLocaleDateString()}</p>
             </div>
-            <div className="d-flex gap-3 mt-5 justify-content-center">
-                <button className={styles.button} onClick={handleNextClick}>
-                    Next
-                </button>
-                <button className={styles.button} onClick={clearCanvas}>
-                    Reset Signature
-                </button>
-            </div>
+            {showButtons && (
+                <div className="d-flex gap-3 mt-5 justify-content-center">
+                    <button className={styles.button} onClick={handleNextClick}>
+                        Next
+                    </button>
+                    <button className={styles.button} onClick={clearCanvas}>
+                        Reset Signature
+                    </button>
+                </div>
+            )}
         </>
     );
 };
