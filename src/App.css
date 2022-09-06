@@ -2,6 +2,10 @@
     font-family: 'Poppins', sans-serif;
 }
 
+html {
+    font-size: 1.1rem;
+}
+
 .App {
     background-image: url('./images/pageBG.jpg');
     background-size: cover;

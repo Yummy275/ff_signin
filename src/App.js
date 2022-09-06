@@ -8,7 +8,7 @@ function App() {
 
     const mainPages = () => {
         if (page === 'greet') return <Greeting setPage={setPage} />;
-        if (page === 'new') return <NewCustomer />;
+        if (page === 'new') return <NewCustomer setPage={setPage} />;
     };
 
     return (
